@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <title>Our Story 💞</title>
 
 <style>
@@ -25,13 +27,33 @@ body {
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(255, 77, 136, 0.2);
-    max-width: 500px;
+    max-width: 520px;
 }
 
 h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 42px;
+    font-size: 44px;
     margin-bottom: 20px;
+}
+
+#typedText {
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 120px;
+    white-space: pre-line;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: #cc0066;
+    animation: blink 0.8s infinite;
+    margin-left: 3px;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
 }
 </style>
 </head>
@@ -39,13 +61,34 @@ h1 {
 <body>
     <div class="card">
         <h1>Karishma ❤️</h1>
-        <p>
-            Every moment with you feels magical.  
-            I can't wait for all the memories we will create,  
-            all the laughs we will share,  
-            and all the dreams we will chase together.  
-        </p>
-        <p><strong>Happy Valentine’s Day 💖</strong></p>
+        <div id="typedText"></div><span class="cursor"></span>
+        <p style="margin-top:20px;"><strong>Happy Valentine’s Day 💖</strong></p>
     </div>
+
+<script>
+const message = `Every moment with you feels magical.
+From our first conversation to today,
+you have filled my life with happiness, warmth, and love.
+
+I can't wait for all the memories we will create,
+all the laughs we will share,
+and all the dreams we will chase together.
+
+You are my today and all of my tomorrows. ❤️`;
+
+let index = 0;
+const speed = 40; // typing speed (lower = faster)
+
+function typeWriter() {
+    if (index < message.length) {
+        document.getElementById("typedText").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+    }
+}
+
+window.onload = typeWriter;
+</script>
+
 </body>
 </html>

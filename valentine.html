@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Be My Valentine?</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff5f9);
+    text-align: center;
+    color: #cc0066;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    margin-top: 50px;
+}
+
+#countdown {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+button {
+    position: absolute;
+    padding: 12px 26px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#yesBtn {
+    background: #ff4d88;
+    color: white;
+    left: 35%;
+    top: 65%;
+}
+
+#noBtn {
+    background: #aaa;
+    color: white;
+    left: 55%;
+    top: 65%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Karishma, will you be my Valentine? 💕</h1>
+<div id="countdown"></div>
+
+<button id="yesBtn" onclick="location.href='celebration.html'">YES 💖</button>
+<button id="noBtn">NO 🙈</button>
+
+<script>
+var valentineDate = new Date("Feb 14, 2026 00:00:00").getTime();
+var timer = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = valentineDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    document.getElementById("countdown").innerHTML = days + " days until Valentine’s Day 💘";
+    if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "It's Valentine's Day ❤️";
+    }
+}, 1000);
+
+var noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+});
+</script>
+
+</body>
+</html>

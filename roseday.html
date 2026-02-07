@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>Happy Rose Day 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #fff0f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    color: #b30059;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 77, 136, 0.2);
+    max-width: 520px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+#roseArea {
+    font-size: 40px;
+    min-height: 80px;
+    margin: 15px 0;
+}
+
+.pieces {
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.pieces:hover {
+    transform: scale(1.2);
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    background: #ff4d88;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#finalMessage {
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+/* Falling roses background */
+.rose {
+    position: fixed;
+    top: -10px;
+    font-size: 22px;
+    animation: fall linear forwards;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Happy Rose Day, Karishma 🌹</h1>
+    <p>Tap the pieces to build your rose bouquet 💐</p>
+
+    <div id="roseArea"></div>
+
+    <div>
+        <span class="pieces" onclick="addPiece('🌹')">🌹</span>
+        <span class="pieces" onclick="addPiece('🌹')">🌹</span>
+        <span class="pieces" onclick="addPiece('🌹')">🌹</span>
+        <span class="pieces" onclick="addPiece('🌿')">🌿</span>
+        <span class="pieces" onclick="addPiece('🌿')">🌿</span>
+        <span class="pieces" onclick="addPiece('💖')">💖</span>
+    </div>
+
+    <button onclick="finishBouquet()">Done Making My Bouquet 💐</button>
+
+    <div id="finalMessage"></div>
+</div>
+
+<script>
+let bouquetCount = 0;
+
+function addPiece(piece) {
+    document.getElementById("roseArea").innerHTML += piece;
+    bouquetCount++;
+}
+
+function finishBouquet() {
+    if (bouquetCount < 3) {
+        document.getElementById("finalMessage").innerHTML = "Add a few more roses first 🌹😉";
+    } else {
+        document.getElementById("finalMessage").innerHTML =
+            "This bouquet is just like my feelings for you — growing more beautiful every day 🌹💖";
+        burstHearts();
+    }
+}
+
+function burstHearts() {
+    for (let i = 0; i < 15; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = "50%";
+        heart.style.top = "60%";
+        heart.style.fontSize = "20px";
+        heart.style.transition = "transform 1s ease-out, opacity 1s";
+        document.body.appendChild(heart);
+
+        let x = (Math.random() - 0.5) * 400;
+        let y = (Math.random() - 0.5) * 400;
+
+        setTimeout(() => {
+            heart.style.transform = `translate(${x}px, ${y}px) scale(1.5)`;
+            heart.style.opacity = "0";
+        }, 50);
+
+        setTimeout(() => heart.remove(), 1000);
+    }
+}
+
+// Falling roses background
+function createRose() {
+    let rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(rose);
+    setTimeout(() => rose.remove(), 10000);
+}
+setInterval(createRose, 600);
+</script>
+
+</body>
+</html>
